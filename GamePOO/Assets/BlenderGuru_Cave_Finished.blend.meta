@@ -143,6 +143,7 @@ ModelImporter:
     2300082: Plane_001
     2300084: Plane_002
     2300086: Plane_004
+    2300088: Cylinder
     3300000: char_base_000
     3300002: char_base_005
     3300004: char_base_006
@@ -187,6 +188,7 @@ ModelImporter:
     3300082: Plane_001
     3300084: Plane_002
     3300086: Plane_004
+    3300088: Cylinder
     4300000: Circle_006
     4300002: Circle_005
     4300004: Circle_003
@@ -231,6 +233,7 @@ ModelImporter:
     4300082: char_base_000
     4300084: char_base_006
     4300086: char_base_005
+    4300088: Cylinder
     7400000: Default Take
     9500000: //RootNode
   materials:
