@@ -9,6 +9,7 @@ public class Terminal : MonoBehaviour {
 	private string messageBox = "";
 	private string messageToSend = "";
 	private static int num_messages = 0 ;
+	private ProcessadorCmds processadorCmds = new ProcessadorCmds();
 
 
 	private void OnGUI(){
@@ -24,8 +25,9 @@ public class Terminal : MonoBehaviour {
 		messageToSend =  GUILayout.TextField (messageToSend);
 
 		if((GUILayout.Button("executar", GUILayout.Width(75)) ) && messageToSend.Length > 0){
-			messageBox += messageToSend + "\n";
+			messageBox += processadorCmds.identifyCmd(messageToSend) + "\n";
 			messageToSend = "";
+
 			if(num_messages == 20){
 				messageBox = "";
 				num_messages = 0;

@@ -62,3 +62,12 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+GamePOO/Assembly-CSharp-Editor-vs.csproj
+GamePOO/Assembly-CSharp-Editor.csproj
+GamePOO/Assembly-CSharp.csproj
+GamePOO/Assembly-CSharp-Editor.csproj
+GamePOO/GamePOO-csharp.sln
+GamePOO/GamePOO.userprefs
+GamePOO/Assembly-UnityScript.unityproj
+GamePOO/Assembly-CSharp.csproj
+GamePOO/Assembly-CSharp-Editor.csproj
