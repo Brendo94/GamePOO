@@ -24,7 +24,7 @@ public class Terminal : MonoBehaviour {
 		GUILayout.BeginHorizontal ();
 		messageToSend =  GUILayout.TextField (messageToSend);
 
-		if((GUILayout.Button("executar", GUILayout.Width(75)) ) && messageToSend.Length > 0){
+		if((Event.current.keyCode == KeyCode.Return || (GUILayout.Button("executar", GUILayout.Width(75)) ) ) && messageToSend.Length > 0){
 			messageBox += processadorCmds.identifyCmd(messageToSend) + "\n";
 			messageToSend = "";
 
