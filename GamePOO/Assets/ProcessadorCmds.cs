@@ -7,6 +7,7 @@ public class ProcessadorCmds {
 	//Comandos 
 	// novo obeto Nome_classe x = new Class()
 	// Chamar metodo obeto.metodo();
+		
 
 	//verifica se a semantica ta correta 
 	// se a classe/metodo existe e se ele tem permissao de executar(de acordo com as regras de batalha que serao definidas )
@@ -54,5 +55,31 @@ public class ProcessadorCmds {
 
 		return "COMANDO_NAO_ENCONTRADO";
 	}
+
+	//outras tentativas
+	private void analiseSintatica(string texto){
+		// classe objeto sinal palavra_reservada clase  abre_parenteses  atributos fecha_parenteses
+		//objeto sinal metodo abre_parenteses atributos fecha_parenteses
+		ArrayList classes = new ArrayList ();
+		classes.Add("Javali");
+		classes.Add("Urso");
+
+		string[] delimitadores = {" ","."};
+		string[] palavras = texto.Split (delimitadores,StringSplitOptions.RemoveEmptyEntries);
+		Regex regex = new Regex (@"^[A-Za-z]");
+		for (int i = 0; i < palavras.Length; i++) {
+			if(classes.Contains(palavras[i])){
+				Match match = regex.Match(palavras[i+1]);
+				if(match.Success && palavras[i+2].Equals("=") && palavras[i+3].Equals("new")){
+
+				}
+			}
+		}
+			
+
+	
+	}
+
+
 		
 }
