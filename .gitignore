@@ -78,3 +78,7 @@ GamePOO/Assembly-CSharp-firstpass.csproj
 GamePOO/Assembly-UnityScript-vs.unityproj
 GamePOO/Assembly-CSharp-Editor-vs.csproj
 GamePOO/Assembly-CSharp-firstpass.csproj
+GamePOO/Assets/Images.meta
+GamePOO/Assets/Script.meta
+GamePOO/ProjectSettings/ProjectSettings.asset
+GamePOO/ProjectSettings/TagManager.asset
