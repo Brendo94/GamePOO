@@ -19,11 +19,23 @@ public class pergaminho : MonoBehaviour {
 	
 	}
 
+
 	void OnTriggerEnter(Collider other) {
 		if (other.CompareTag ("Player")) {
 			painel.enabled = true;
-			conversa.text = dialogo;
-			
+			if (this.gameObject.CompareTag ("classe01")) {
+				conversa.text = "sou classe 01, ola";
+			} else if (this.gameObject.CompareTag ("classe02")) {
+				conversa.text = "sou classe 02, ola";
+			} else if (this.gameObject.CompareTag ("classe03")) {
+				conversa.text = "sou classe 03, ola";
+			} else if (this.gameObject.CompareTag ("classe04")) {
+				conversa.text = "sou classe 04, ola";
+			} else if (this.gameObject.CompareTag ("classe05")) {
+				conversa.text = "sou classe 05, ola";
+			}
+
+
 		}
 		
 		
@@ -31,6 +43,19 @@ public class pergaminho : MonoBehaviour {
 	}
 
 	public void Coletar(){
+		if (this.gameObject.CompareTag ("classe01")) {
+		
+		} else if (this.gameObject.CompareTag ("classe02")) {
+		
+		} else if (this.gameObject.CompareTag ("classe03")) {
+		
+		} else if (this.gameObject.CompareTag ("classe04")) {
+		
+		} else if (this.gameObject.CompareTag ("classe05")) {
+		
+		}
+
+
 		painel.enabled = false;
 		Destroy (gameObject);
 	}
