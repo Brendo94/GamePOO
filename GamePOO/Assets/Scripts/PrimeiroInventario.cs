@@ -3,10 +3,11 @@ using System.Collections;
 
 public class PrimeiroInventario : MonoBehaviour {
 	public GameObject miniScroll;
-	private bool temScroll;
-	// Use this for initialization
+	public static  bool temScroll;
+		// Use this for initialization
 	void Start () {
 		miniScroll.SetActive(false);
+
 	}
 	
 	// Update is called once per frame
@@ -23,8 +24,9 @@ public class PrimeiroInventario : MonoBehaviour {
 		if (coll.gameObject.CompareTag("NPC")) {
 			temScroll = false;
 		}
-		if (coll.gameObject.CompareTag ("Scroll")) {
+		if (coll.gameObject.CompareTag ("Scroll") && temScroll) {
 			temScroll = true;
 		}
 	}
+
 }
