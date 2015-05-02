@@ -7,7 +7,7 @@ public class PrimeiroInventario : MonoBehaviour {
 		// Use this for initialization
 	void Start () {
 		miniScroll.SetActive(false);
-
+		temScroll = false;
 	}
 	
 	// Update is called once per frame

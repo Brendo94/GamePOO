@@ -11,6 +11,7 @@ public class pergaminho : MonoBehaviour {
 
 
 
+
 	// Use this for initialization
 	void Start () {
 		dialogo = "new Class()"; 
@@ -32,7 +33,8 @@ public class pergaminho : MonoBehaviour {
 			painel.enabled = true;
 
 			if (this.gameObject.name.Equals ("classe01")) {
-				conversa.text = "sou classe 01, ola";
+				conversa.text = "public class Aranha { \n   private float poder;\n private float custo;\npublic Aranha() {\n poder = 10;\n custo = 15;\n }\n " +
+					"public float atacar(){\n return poder;\n }\n  public void defender(float dano){ \n        custo = custo - dano; \n    } \n}";
 			} else if (this.gameObject.name.Equals ("classe02")) {
 				conversa.text = "sou classe 02, ola";
 
@@ -50,20 +52,28 @@ public class pergaminho : MonoBehaviour {
 		
 	}
 	void OnTriggerStay(Collider c){
-		if (destruir && c.gameObject.CompareTag ("Player")) {
-			Destroy (gameObject);
+
+		if (!PrimeiroInventario.temScroll && c.gameObject.CompareTag ("Player")  && destruir) {
 			destruir = false;
+			painel.enabled = false;
+			PrimeiroInventario.temScroll = true;
+			Destroy (gameObject);
+
+		} else {
+
 		}
 	}
 
 	public void Coletar(){
-		PrimeiroInventario.temScroll = true;
-		painel.enabled = false;
-		destruir = true;
-		classeNoInventario = this.gameObject.name;
-		conversa.text = "";
+		if (!PrimeiroInventario.temScroll && !destruir) {
+			classeNoInventario = gameObject.name;
+			conversa.text = "";
+			destruir = true;
 
-
+			painel.enabled = false;
+		} else {
+			Debug.Log(PrimeiroInventario.temScroll);
+		}
 
 	}
 
