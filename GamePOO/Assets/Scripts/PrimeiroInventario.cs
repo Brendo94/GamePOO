@@ -23,10 +23,15 @@ public class PrimeiroInventario : MonoBehaviour {
 	void OnTriggerEnter (Collider coll){
 		if (coll.gameObject.CompareTag("NPC")) {
 			temScroll = false;
-			Pergaminho.classeNoInventario  = "";
 		}
 		if (coll.gameObject.CompareTag ("Scroll") && temScroll) {
 			temScroll = true;
+		}
+	}
+
+	void OnTriggerExit (Collider coll){
+		if (coll.gameObject.CompareTag("NPC")) {
+			Pergaminho.classeNoInventario  = "";
 		}
 	}
 
