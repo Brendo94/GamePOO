@@ -4,16 +4,15 @@ using System.Collections;
 public class GerenciadorSummoner : MonoBehaviour {
 	private  GameObject _monstro;
 	public  GameObject[] monstros;
-	public static string nomeMonstro;
 	private bool[] _estaVazio;
 	private Transform[] _filhos;
 
 	// Use this for initialization
 	void Start () {
 		_estaVazio = new bool[4];
-		Invoke ("Instanciar", 1f);
-		Invoke ("Instanciar", 1f);
-		Invoke ("Instanciar", 1f);
+		//Invoke ("Instanciar", 1f);
+		//Invoke ("Instanciar", 1f);
+		//Invoke ("Instanciar", 1f);
 		_estaVazio [0] = true;
 		_estaVazio [1] = true;
 		_estaVazio [2] = true;
@@ -25,9 +24,9 @@ public class GerenciadorSummoner : MonoBehaviour {
 	
 	}
 
-	public void Instanciar() {
-		//Criar chave-valor pra instanciar os monstros
-		// USAR SENDMESSAGE PARA PASSAR PARAMETROS ENTRE CLASSE MONOBEHAVIOUR
+
+	public void Instanciar(string nomeMonstro) {
+
 		if(nomeMonstro == "Aranha"){
 			_monstro = GameObject.Instantiate (monstros [0]) as GameObject;
 

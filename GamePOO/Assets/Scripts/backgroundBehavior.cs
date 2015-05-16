@@ -44,7 +44,7 @@ public class backgroundBehavior : MonoBehaviour {
 
 	public void atualizarBarra(){
 		if (estouVivo()) {
-			atualizarHealth (1);
+			atualizarHealth (10);
 			UpdateHealthBar (estadoVida);
 			atualizarTextoHealth();
 		}

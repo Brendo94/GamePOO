@@ -10,7 +10,7 @@ public class LoadMonstroArena : MonoBehaviour {
 	void Start () {
 		_monstro = GameObject.Instantiate (monstros [1]) as GameObject;
 		_monstro.transform.position = transform.position;
-		GerenciadorSummoner.nomeMonstro = "Aranha";
+		//GerenciadorSummoner.nomeMonstro = "Aranha";
 	}
 	
 	// Update is called once per frame
