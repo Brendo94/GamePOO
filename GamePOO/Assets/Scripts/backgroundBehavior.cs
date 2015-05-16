@@ -3,37 +3,53 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class backgroundBehavior : MonoBehaviour {
-	public UnityEngine.UI.Text texto;
+	public UnityEngine.UI.Text textoHealth;
+	public UnityEngine.UI.Text textoMana;
+
 	public int estadoVida;
-	public UnityEngine.UI.Image visualHealth;
+	public int estadoMana;
 	public int maximoVida;
+	public int maximoMana;
 
-	public RectTransform healthTransform;
-	private float cachedY;
-	private float minXValue;
-	private float maxXValue;
+	public UnityEngine.UI.Slider sliderHealth;
+	public UnityEngine.UI.Slider sliderMana;
 
-	//private float currentXValue = 0;
-
+	public Color MaxHealthColor = Color.green;
+	public Color MinHealthColor = Color.red;
+	public Color colorMana = Color.blue;
+	public Image fill;
 
 	// Use this for initialization
 	void Start () {
-		texto.text = "Health: 100";
+		textoHealth.text = "Health: 100";
+		textoMana.text = "Mana: 0";
 		estadoVida = 100;
 		maximoVida = 100;
-		cachedY = healthTransform.position.y;
-		maxXValue = healthTransform.position.x;
-		//minXValue = (float)80.3;
-		minXValue = healthTransform.position.x - healthTransform.rect.width;
-		//maxXValue = (float)80.3+(float)161.1;
-		//healthTransform.GetComponent<CanvasRenderer>().hideIfInvisible = false;
+		estadoMana = 0;
+		maximoMana = 100;
+		sliderHealth.wholeNumbers = true;
+		sliderHealth.minValue = 0f;
+		sliderHealth.maxValue = maximoVida;
+		sliderHealth.value = maximoVida;
+		sliderMana.wholeNumbers = true;
+		sliderMana.minValue = 0;
+		sliderMana.maxValue = maximoMana;
+		sliderMana.value = estadoMana;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	
 	}
 
+	public void atualizarBarra(){
+		if (estouVivo()) {
+			atualizarHealth (1);
+			UpdateHealthBar (estadoVida);
+			atualizarTextoHealth();
+		}
+	}
+	
 	private bool estouVivo(){
 		if (estadoVida >= 1) {
 			return true;
@@ -42,35 +58,44 @@ public class backgroundBehavior : MonoBehaviour {
 		}
 	}
 
-	private void atualizarTexto(int decrescimo){
-		estadoVida = estadoVida - decrescimo;
-		texto.text = "Health: " + estadoVida;
+	private void atualizarHealth(int decrescimo){
+		estadoVida -= decrescimo;
 	}
 
-	private void atualizarCorBarra(){
-		float currentXValue = MapValues(estadoVida,0,maximoVida,minXValue,maxXValue);
-		//currentXValue = MapValues(estadoVida,0,100,-10,0);
-		//Debug.Log (currentXValue);
-		healthTransform.position = new Vector3 (currentXValue, cachedY);
+	private void atualizarTextoHealth(){
+		textoHealth.text = "Health: " + estadoVida;
+	}
 
-		if (estadoVida > maximoVida / 2) {
-			visualHealth.color = new Color32((byte)MapValues(estadoVida, maximoVida/2, maximoVida,255,0),255,0,255);
+	public void UpdateHealthBar(int val) {
+		sliderHealth.value = val;
+		fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)val / maximoVida);
+	}
+	
+	public void aumentarMana(){
+		//neste ponto verifica-se se a adiçao ultrapassa o valor maximo de mana, caso nao esse valor e decrescido, caso contrario iguala ao valor maximo
+		if ((estadoMana + 1) <= maximoMana) {
+			estadoMana++;
 		} else {
-			visualHealth.color = new Color32(255, (byte)MapValues(estadoVida, 0, maximoVida/2,0,255),0,255);
+			estadoMana = maximoMana;
 		}
+		atualizarTextoMana ();
+		sliderMana.value = estadoMana;
+
 	}
 
-	private float MapValues(float x, float inMin, float inMax, float outMin, float outMax){
-		return (x-inMin)*(outMax-outMin)/(inMax-inMin)+outMin;
-	}
-
-	public void atualizarBarra(){
-		if (estouVivo()) {
-			atualizarTexto(1);
-			atualizarCorBarra ();
+	public void diminuirMana(){
+		//neste ponto verifica-se se o decrescimo de mana pode ser menor que zero, caso nao executa o if, caso contrario esse valor iguala a zero.
+		if ((estadoMana-1)>=0) {
+			estadoMana--;
+		} else {
+			estadoMana = 0;
 		}
+		atualizarTextoMana ();
+		sliderMana.value = estadoMana;
 	}
 
-
+	private void atualizarTextoMana(){
+		textoMana.text = "Mana: " + estadoMana;
+	}
 }
  
