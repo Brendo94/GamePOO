@@ -22,10 +22,10 @@ public class backgroundBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		textoHealth.text = "Health: 100";
-		textoMana.text = "Mana: 0";
+		textoMana.text = "Mana: 20";
 		estadoVida = 100;
 		maximoVida = 100;
-		estadoMana = 0;
+		estadoMana = 20;
 		maximoMana = 100;
 		sliderHealth.wholeNumbers = true;
 		sliderHealth.minValue = 0f;
@@ -42,9 +42,9 @@ public class backgroundBehavior : MonoBehaviour {
 	
 	}
 
-	public void atualizarBarra(){
+	public void atualizarBarra(int valor){
 		if (estouVivo()) {
-			atualizarHealth (10);
+			atualizarHealth (valor);
 			UpdateHealthBar (estadoVida);
 			atualizarTextoHealth();
 		}
@@ -71,10 +71,10 @@ public class backgroundBehavior : MonoBehaviour {
 		fill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)val / maximoVida);
 	}
 	
-	public void aumentarMana(){
+	public void aumentarMana(int valor){
 		//neste ponto verifica-se se a adiçao ultrapassa o valor maximo de mana, caso nao esse valor e decrescido, caso contrario iguala ao valor maximo
-		if ((estadoMana + 1) <= maximoMana) {
-			estadoMana++;
+		if ((estadoMana + valor) <= maximoMana) {
+			estadoMana += valor;
 		} else {
 			estadoMana = maximoMana;
 		}
@@ -83,10 +83,10 @@ public class backgroundBehavior : MonoBehaviour {
 
 	}
 
-	public void diminuirMana(){
+	public void diminuirMana(int valor){
 		//neste ponto verifica-se se o decrescimo de mana pode ser menor que zero, caso nao executa o if, caso contrario esse valor iguala a zero.
-		if ((estadoMana-1)>=0) {
-			estadoMana--;
+		if ((estadoMana-valor)>=0) {
+			estadoMana -= valor;
 		} else {
 			estadoMana = 0;
 		}
