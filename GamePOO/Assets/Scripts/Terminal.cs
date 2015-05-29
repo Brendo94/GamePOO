@@ -9,6 +9,7 @@
 		private string messageToSend = "";
 		private static int num_messages = 0 ;
 		private ProcessadorCmds processadorCmds = new ProcessadorCmds ();
+	    private ProcessadorCmds2 processadorCmds2 = new ProcessadorCmds2();
 
 
 
@@ -24,20 +25,23 @@
 
 			if ((Event.current.keyCode == KeyCode.Return || (GUILayout.Button ("executar", GUILayout.Width (75)))) && messageToSend.Length > 0) {
 
-				//esse metodo ira retornar o comando a ser executado e uma lista de parametros.
-				string cmd = processadorCmds.identifyCmd (messageToSend); 
+			 //esse metodo ira retornar o comando a ser executado e uma lista de parametros, caso tenha.
+			 //cmd[0] = NOME DO COMANDO
+			 //cmd[1] = NOME DA CLASSE;
+			 //cmd[2] = NOME DO OBJETO;
+			 //cmd[3] = NOME DO METODO;	
+				string[] cmd = processadorCmds2.verificaEstruturaGeral (messageToSend); 
 
 				if (GerenciadorBatalha.block) {
 				    if (GerenciadorBatalha.block_mana) {
-						if (cmd.Equals ("NOVO_OBJETO")) {
-							GameObject.Find ("GerenciadorSummoner").SendMessage ("Instanciar", "Aranha");
+						if (cmd[0].Equals ("NOVO_OBJETO")) {
+							GameObject.Find ("GerenciadorSummoner").SendMessage ("Instanciar", cmd[1]);
 							GerenciadorBatalha.block = false;
-						} else if (cmd.Equals ("CHAMAR_METODO")) {
-							string[] parametros = new string[] {"classe","objeto","futuros parametros"};
-							GameObject.Find ("GerenciadorBatalha").SendMessage ("MagoAtacar", parametros);
+						} else if (cmd[0].Equals ("CHAMAR_METODO")) {
+							GameObject.Find ("GerenciadorBatalha").SendMessage ("MagoAtacar", cmd);
 							GerenciadorBatalha.block = false;
 						}
-						messageBox += cmd + "\n";
+						messageBox += cmd[0] + "\n";
 
 					}else{
 						messageBox += "Voce nao possui mana sufuciente" + "\n";

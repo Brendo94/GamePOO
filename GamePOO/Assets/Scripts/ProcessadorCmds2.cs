@@ -47,7 +47,15 @@ public class ProcessadorCmds2 {
             resultado[1] = nomeClass;
             resultado[2] = variavel;
 
-            this.tabelaClasses.Add(variavel,nomeClass);
+			try{
+				this.tabelaClasses.Add(variavel,nomeClass);
+			}catch(ArgumentException e){
+				resultado[0] = "Error_Nome_Objeto_Ja_existe";
+				resultado[1] = nomeClass;
+				resultado[2] = variavel;
+				return resultado;
+			}
+           
 
             return resultado;
             

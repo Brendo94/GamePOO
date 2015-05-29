@@ -24,12 +24,20 @@ public class GerenciadorSummoner : MonoBehaviour {
 	
 	}
 
+	public void callAnimation(string[] parametros){
+
+		if (parametros [1] == "Aranha") {
+			_monstro = monstros[0].gameObject;
+			_monstro.GetComponent<Animator>().Play("attack");
+		}
+	}
 
 	public void Instanciar(string nomeMonstro) {
 
-		if(nomeMonstro == "Aranha"){
+		if (nomeMonstro == "Aranha") {
 			_monstro = GameObject.Instantiate (monstros [0]) as GameObject;
-
+		} else if (nomeMonstro == "alguma coisa") {
+			//implementar
 		}
 
 		if (_estaVazio [0]) {

@@ -12,7 +12,7 @@ public class GerenciadorBatalha : MonoBehaviour {
 
 	void Start () {
 		block = true;
-		block_mana = false;// variavel que indica se o usuario em mana suficiente para realizar uma jogada
+		block_mana = true;// variavel que indica se o usuario em mana suficiente para realizar uma jogada
 		instanciarMosntro ("coisa");
 		Monstro_life = 100;
 		Mago_life = 100;//lembrando que esses valores estao na classe backgroundBehavior
@@ -46,6 +46,7 @@ public class GerenciadorBatalha : MonoBehaviour {
 			Monstro_life -= valor_a_ser_descontado_da_vida_do_monstro;
 			//chamar animacao monstro
 			//na classe GerenciadorSummoner
+			GameObject.Find("GerenciadorSummoner").SendMessage("callAnimation", parametros);
 		} else {
 			//batalha acaba aqui!!!!!
 		}
