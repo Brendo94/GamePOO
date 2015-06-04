@@ -9,31 +9,34 @@ public class ControlBar : MonoBehaviour {
 
 	//a list of all the UIScript_HP
 	public List<UIBarScript> HPScriptList = new List<UIBarScript>();
+	private int minHP;
+	private int maxHP;
 
 	void Start()
 	{
+		minHP = 100;
+		maxHP = 100;
 		foreach (UIBarScript HPS in HPScriptList)
 		{
-			HPS.UpdateValue(50,100);
+			HPS.UpdateValue(minHP,maxHP);
 		}
 	}
 
-	// Update is called once per frame
-	void UpdateBar () 
-	{
-		//get the string in the input boxes
-		string StrHP = gameObject.transform.FindChild("HP").gameObject.GetComponent<InputField>().text;
-		string StrMaxHP = gameObject.transform.FindChild("MaxHP").gameObject.GetComponent<InputField>().text;
-
-		//convert to int
-		int HP = int.Parse(StrHP);
-		int MaxHP = int.Parse(StrMaxHP);
-
-		//for every UIScript_HP update it.
+	public void atualizarBarra(int HP){
+		minHP = HP;
 		foreach (UIBarScript HPS in HPScriptList)
 		{
-			HPS.UpdateValue(HP,MaxHP);
+			HPS.UpdateValue(minHP, maxHP);
 		}
-
 	}
+
+//	// Update is called once per frame
+//	void Update () 
+//	{
+//		Debug.Log (minHP);
+//
+//		//for every UIScript_HP update it.
+//
+//
+//	}
 }

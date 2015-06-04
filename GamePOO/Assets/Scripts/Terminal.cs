@@ -31,15 +31,15 @@
 			 //cmd[2] = NOME DO OBJETO;
 			 //cmd[3] = NOME DO METODO;	
 				string[] cmd = processadorCmds2.verificaEstruturaGeral (messageToSend); 
-
-				if (GerenciadorBatalha.block) {
-				    if (GerenciadorBatalha.block_mana) {
+				GameObject.Find ("GerenciadorBatalha").SendMessage ("checarValores", cmd);
+				if (!GerenciadorBatalha.block) {
+				    if (!GerenciadorBatalha.block_mana) {
 						if (cmd[0].Equals ("NOVO_OBJETO")) {
-							GameObject.Find ("GerenciadorSummoner").SendMessage ("Instanciar", cmd[1]);
-							GerenciadorBatalha.block = false;
+							GameObject.Find ("GerenciadorBatalha").SendMessage ("InstanciarMonstroMago", cmd);
+							//GerenciadorBatalha.block = false;
 						} else if (cmd[0].Equals ("CHAMAR_METODO")) {
-							GameObject.Find ("GerenciadorBatalha").SendMessage ("MagoAtacar", cmd);
-							GerenciadorBatalha.block = false;
+						GameObject.Find ("GerenciadorBatalha").SendMessage ("JogadaMago", cmd);
+							//GerenciadorBatalha.block = false;
 						}
 						messageBox += cmd[0] + "\n";
 

@@ -22,10 +22,10 @@ public class backgroundBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		textoHealth.text = "Health: 100";
-		textoMana.text = "Mana: 20";
+		textoMana.text = "Mana: 45";
 		estadoVida = 100;
 		maximoVida = 100;
-		estadoMana = 20;
+		estadoMana = 45;
 		maximoMana = 100;
 		sliderHealth.wholeNumbers = true;
 		sliderHealth.minValue = 0f;
