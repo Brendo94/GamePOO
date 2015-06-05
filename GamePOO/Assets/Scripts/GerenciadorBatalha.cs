@@ -13,11 +13,13 @@ public class GerenciadorBatalha : MonoBehaviour {
 	public UnityEngine.UI.Button vez;
 	private bool defender{ get; set;}
 	private int contadorDefesa{ get ; set ;}
+	public Animator anime;
 
 	void Start () {
 		block = false;
 		block_mana = false;// variavel que indica se o usuario em mana suficiente para realizar uma jogada
-		instanciarMosntro ("coisa");
+		Debug.Log (PlayerPrefs.GetString("nomeMonstro"));
+		instanciarMosntro (PlayerPrefs.GetString("nomeMonstro"));
 		Monstro_life = 100;
 		Mago_life = 100;//lembrando que esses valores estao na classe backgroundBehavior
 		Mago_mana = 45;// entao eles devem ser alterados la tmb
@@ -34,20 +36,27 @@ public class GerenciadorBatalha : MonoBehaviour {
 			block = false;
 			Mago_mana += 15;
 			GameObject.Find ("Background").SendMessageUpwards ("aumentarMana", 15);
+
 		}else {
 			vez.enabled = false;
 			block = true;
-			Invoke("MonstroAtacar", 3f);
+			anime.SetBool ("atacando", true);
+			Invoke("MonstroAtacar", 1.5f);
 		}
 
 	}
 
 	void instanciarMosntro(string nomeMonstro){
-		if(nomeMonstro.Equals("coisa"))
-		_monstro = GameObject.Instantiate (monstros [0]) as GameObject;
-		_monstro.transform.position = gameObject.transform.position;
+		if (nomeMonstro.Equals ("PaiDoMonstro")) {
+			_monstro = GameObject.Instantiate (monstros [1]) as GameObject;
+			_monstro.transform.position = gameObject.transform.position;
+			_monstro.transform.rotation = gameObject.transform.rotation;
+			anime = _monstro.GetComponent<Animator>();
+		}
 	}
 	public void MonstroAtacar(){
+
+		anime.SetBool ("atacando", false);
 
 		int valor = Random.Range (6, 12);
 
@@ -67,6 +76,8 @@ public class GerenciadorBatalha : MonoBehaviour {
 		} else {
 			defender= false ;
 		}
+
+
 		VezDeQuem ();
 	}
 
@@ -95,7 +106,9 @@ public class GerenciadorBatalha : MonoBehaviour {
 			GameObject.Find ("Background").SendMessageUpwards ("diminuirMana", 15);
 
 		} else {
-			//batalha acaba aqui!!!!!
+			PlayerPrefs.SetString("Ganhou", "sim");
+			Application.LoadLevel ("second_map");
+
 		}
 	}
 
