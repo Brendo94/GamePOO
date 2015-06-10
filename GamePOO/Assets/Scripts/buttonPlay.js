@@ -9,25 +9,24 @@ function Update () {
 }
 
 function Historia(){
-	Application.LoadLevel(1);
+	Application.LoadLevel("historia");
 }
 
 function Iniciar(){
-	Application.LoadLevel(2);
+	Application.LoadLevel("caves");
 }
 
 function faseUm(){
-	Application.LoadLevel(4);
+	Application.LoadLevel("second_map");
 }
 
 function faseUmTelaUm(){
-	Application.LoadLevel(5);
+	Application.LoadLevel("passarFaseTela2");
 }
 
 function faseUmTelaDois(){
-	Application.LoadLevel(6);
+	Application.LoadLevel("passarFaseTela3");
 }
-
 function faseUmTelaTres(){
-	Application.LoadLevel(3);
+	Application.LoadLevel("second_map");
 }

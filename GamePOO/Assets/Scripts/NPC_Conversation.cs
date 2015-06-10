@@ -23,7 +23,7 @@ public class NPC_Conversation : MonoBehaviour {
 		if (other.CompareTag ("Player")) {
 			if (Pergaminho.classeNoInventario.Equals ("classe01") ) {
 				dialogo = "Correto!!";
-				Application.LoadLevel("segunda_fase");
+				Application.LoadLevel("passarFaseTela1");
 			} else if (Pergaminho.classeNoInventario.Equals ("classe02")) {
 				dialogo = "Hum, nao era essa que eu queria... Esta errada, falta ponto e vírgula no construtor";
 			} else if (Pergaminho.classeNoInventario.Equals ("classe03")) {
