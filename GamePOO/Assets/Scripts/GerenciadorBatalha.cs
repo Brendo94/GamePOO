@@ -69,7 +69,7 @@ public class GerenciadorBatalha : MonoBehaviour {
 			Mago_life -= valor;
 		} else {
 			//batalha acaba aqui, perdeu
-
+			Application.LoadLevel ("second_map");
 		}
 		if (contadorDefesa > 0) {
 			contadorDefesa--;
