@@ -106,6 +106,7 @@ public class GerenciadorBatalha : MonoBehaviour {
 			GameObject.Find ("Background").SendMessageUpwards ("diminuirMana", 15);
 
 		} else {
+			//ganhou
 			PlayerPrefs.SetString("Ganhou", "sim");
 			Application.LoadLevel ("second_map");
 
