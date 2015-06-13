@@ -17,7 +17,7 @@ public class GerenciadorBatalha : MonoBehaviour {
 
 	void Start () {
 		block = false;
-		block_mana = false;// variavel que indica se o usuario em mana suficiente para realizar uma jogada
+		block_mana = false;// variavel que indica se o usuario tem mana suficiente para realizar uma jogada
 		Debug.Log (PlayerPrefs.GetString("nomeMonstro"));
 		instanciarMosntro (PlayerPrefs.GetString("nomeMonstro"));
 		Monstro_life = 100;
@@ -49,6 +49,36 @@ public class GerenciadorBatalha : MonoBehaviour {
 	void instanciarMosntro(string nomeMonstro){
 		if (nomeMonstro.Equals ("PaiDoMonstro")) {
 			_monstro = GameObject.Instantiate (monstros [1]) as GameObject;
+			_monstro.transform.position = gameObject.transform.position;
+			_monstro.transform.rotation = gameObject.transform.rotation;
+			anime = _monstro.GetComponent<Animator>();
+		}
+		else if (nomeMonstro.Equals ("butterfly2")) {
+			_monstro = GameObject.Instantiate (monstros [2]) as GameObject;
+			_monstro.transform.position = gameObject.transform.position;
+			_monstro.transform.rotation = gameObject.transform.rotation;
+			anime = _monstro.GetComponent<Animator>();
+		}
+		else if (nomeMonstro.Equals ("GOBLIN")) {
+			_monstro = GameObject.Instantiate (monstros [3]) as GameObject;
+			_monstro.transform.position = gameObject.transform.position;
+			_monstro.transform.rotation = gameObject.transform.rotation;
+			anime = _monstro.GetComponent<Animator>();
+		}
+		else if (nomeMonstro.Equals ("cyclop_soldier")) {
+			_monstro = GameObject.Instantiate (monstros [4]) as GameObject;
+			_monstro.transform.position = gameObject.transform.position;
+			_monstro.transform.rotation = gameObject.transform.rotation;
+			anime = _monstro.GetComponent<Animator>();
+		}
+		else if (nomeMonstro.Equals ("humpback_whale")) {
+			_monstro = GameObject.Instantiate (monstros [5]) as GameObject;
+			_monstro.transform.position = gameObject.transform.position;
+			_monstro.transform.rotation = gameObject.transform.rotation;
+			anime = _monstro.GetComponent<Animator>();
+		}
+		else if (nomeMonstro.Equals ("Allosaurus_03")) {
+			_monstro = GameObject.Instantiate (monstros [6]) as GameObject;
 			_monstro.transform.position = gameObject.transform.position;
 			_monstro.transform.rotation = gameObject.transform.rotation;
 			anime = _monstro.GetComponent<Animator>();
