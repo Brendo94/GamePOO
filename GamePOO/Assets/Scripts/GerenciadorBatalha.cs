@@ -106,7 +106,7 @@ public class GerenciadorBatalha : MonoBehaviour {
 			GameObject.Find ("ControlBar").SendMessage ("atualizarBarra", Monstro_life);
 			//chamar animacao monstro
 			//na classe GerenciadorSummoner
-			GameObject.Find ("GerenciadorSummoner").SendMessage ("callAnimation", parametros);
+			GameObject.Find ("GerenciadorSummoner").SendMessage("callAnimation", parametros);
 		} else if (parametros [3].Equals ("defender")) {
 			contadorDefesa += 3;
 			defender = true;
