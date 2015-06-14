@@ -4,7 +4,7 @@
 	public class Terminal : MonoBehaviour{
 
 		public GUISkin terminal_skin;
-		private Rect windowT = new Rect (200, 200, 300, 400);
+		private Rect windowT = new Rect (30, 180, 300, 400);
 		private string messageBox = "";
 		private string messageToSend = "";
 		private static int num_messages = 0 ;
