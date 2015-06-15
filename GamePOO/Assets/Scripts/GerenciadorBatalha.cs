@@ -11,13 +11,16 @@ public class GerenciadorBatalha : MonoBehaviour {
 	private int Mago_mana{ get; set;}
 	private bool Vez_mago;
 	public UnityEngine.UI.Button vez;
+	public UnityEngine.UI.Button continuar;
 	private bool defender{ get; set;}
 	private int contadorDefesa{ get ; set ;}
 	public Animator anime;
+	public UnityEngine.UI.Text texto;
+	public Canvas painelResultado;
 
 	void Start () {
 		block = false;
-		block_mana = false;// variavel que indica se o usuario em mana suficiente para realizar uma jogada
+		block_mana = false;// variavel que indica se o usuario tem mana suficiente para realizar uma jogada
 		Debug.Log (PlayerPrefs.GetString("nomeMonstro"));
 		instanciarMosntro (PlayerPrefs.GetString("nomeMonstro"));
 		Monstro_life = 100;
@@ -26,6 +29,8 @@ public class GerenciadorBatalha : MonoBehaviour {
 		Vez_mago = true;
 		defender = false;
 		contadorDefesa = 0;
+		painelResultado.enabled = false;
+		texto.text = "";
 
 	}
 
@@ -53,6 +58,36 @@ public class GerenciadorBatalha : MonoBehaviour {
 			_monstro.transform.rotation = gameObject.transform.rotation;
 			anime = _monstro.GetComponent<Animator>();
 		}
+		else if (nomeMonstro.Equals ("butterfly2")) {
+			_monstro = GameObject.Instantiate (monstros [2]) as GameObject;
+			_monstro.transform.position = gameObject.transform.position;
+			_monstro.transform.rotation = gameObject.transform.rotation;
+			anime = _monstro.GetComponent<Animator>();
+		}
+		else if (nomeMonstro.Equals ("GOBLIN")) {
+			_monstro = GameObject.Instantiate (monstros [3]) as GameObject;
+			_monstro.transform.position = gameObject.transform.position;
+			_monstro.transform.rotation = gameObject.transform.rotation;
+			anime = _monstro.GetComponent<Animator>();
+		}
+		else if (nomeMonstro.Equals ("cyclop_soldier")) {
+			_monstro = GameObject.Instantiate (monstros [4]) as GameObject;
+			_monstro.transform.position = gameObject.transform.position;
+			_monstro.transform.rotation = gameObject.transform.rotation;
+			anime = _monstro.GetComponent<Animator>();
+		}
+		else if (nomeMonstro.Equals ("humpback_whale")) {
+			_monstro = GameObject.Instantiate (monstros [5]) as GameObject;
+			_monstro.transform.position = gameObject.transform.position;
+			_monstro.transform.rotation = gameObject.transform.rotation;
+			anime = _monstro.GetComponent<Animator>();
+		}
+		else if (nomeMonstro.Equals ("Allosaurus_03")) {
+			_monstro = GameObject.Instantiate (monstros [6]) as GameObject;
+			_monstro.transform.position = gameObject.transform.position;
+			_monstro.transform.rotation = gameObject.transform.rotation;
+			anime = _monstro.GetComponent<Animator>();
+		}
 	}
 	public void MonstroAtacar(){
 
@@ -69,7 +104,10 @@ public class GerenciadorBatalha : MonoBehaviour {
 			Mago_life -= valor;
 		} else {
 			//batalha acaba aqui, perdeu
-			Application.LoadLevel ("second_map");
+			GameObject.Find ("Background").SendMessageUpwards ("atualizarBarra", valor);
+			texto.text = "Voce perdeu esta batalha...";
+			painelResultado.enabled = true;
+
 		}
 		if (contadorDefesa > 0) {
 			contadorDefesa--;
@@ -98,7 +136,7 @@ public class GerenciadorBatalha : MonoBehaviour {
 			GameObject.Find ("ControlBar").SendMessage ("atualizarBarra", Monstro_life);
 			//chamar animacao monstro
 			//na classe GerenciadorSummoner
-			GameObject.Find ("GerenciadorSummoner").SendMessage ("callAnimation", parametros);
+			GameObject.Find ("GerenciadorSummoner").SendMessage("callAnimation", parametros);
 		} else if (parametros [3].Equals ("defender")) {
 			contadorDefesa += 3;
 			defender = true;
@@ -106,8 +144,10 @@ public class GerenciadorBatalha : MonoBehaviour {
 			GameObject.Find ("Background").SendMessageUpwards ("diminuirMana", 15);
 
 		} else {
-			PlayerPrefs.SetString("Ganhou", "sim");
-			Application.LoadLevel ("second_map");
+			//ganhou
+			texto.text = "Parabens, voce ganhou esta batalha!!!";
+			painelResultado.enabled = true;
+
 
 		}
 	}
@@ -166,6 +206,11 @@ public class GerenciadorBatalha : MonoBehaviour {
 			//Invoke("VezDeQuem", 10f);
 
 		}
+	}
+
+	public void sairBatalha(){
+		PlayerPrefs.SetString("Ganhou", "sim");
+		Application.LoadLevel ("second_map");
 	}
 
 }
