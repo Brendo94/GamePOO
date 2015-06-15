@@ -11,9 +11,12 @@ public class GerenciadorBatalha : MonoBehaviour {
 	private int Mago_mana{ get; set;}
 	private bool Vez_mago;
 	public UnityEngine.UI.Button vez;
+	public UnityEngine.UI.Button continuar;
 	private bool defender{ get; set;}
 	private int contadorDefesa{ get ; set ;}
 	public Animator anime;
+	public UnityEngine.UI.Text texto;
+	public Canvas painelResultado;
 
 	void Start () {
 		block = false;
@@ -26,6 +29,8 @@ public class GerenciadorBatalha : MonoBehaviour {
 		Vez_mago = true;
 		defender = false;
 		contadorDefesa = 0;
+		painelResultado.enabled = false;
+		texto.text = "";
 
 	}
 
@@ -99,7 +104,10 @@ public class GerenciadorBatalha : MonoBehaviour {
 			Mago_life -= valor;
 		} else {
 			//batalha acaba aqui, perdeu
-			Application.LoadLevel ("second_map");
+			GameObject.Find ("Background").SendMessageUpwards ("atualizarBarra", valor);
+			texto.text = "Voce perdeu esta batalha...";
+			painelResultado.enabled = true;
+
 		}
 		if (contadorDefesa > 0) {
 			contadorDefesa--;
@@ -128,7 +136,7 @@ public class GerenciadorBatalha : MonoBehaviour {
 			GameObject.Find ("ControlBar").SendMessage ("atualizarBarra", Monstro_life);
 			//chamar animacao monstro
 			//na classe GerenciadorSummoner
-			GameObject.Find ("GerenciadorSummoner").SendMessage ("callAnimation", parametros);
+			GameObject.Find ("GerenciadorSummoner").SendMessage("callAnimation", parametros);
 		} else if (parametros [3].Equals ("defender")) {
 			contadorDefesa += 3;
 			defender = true;
@@ -137,8 +145,9 @@ public class GerenciadorBatalha : MonoBehaviour {
 
 		} else {
 			//ganhou
-			PlayerPrefs.SetString("Ganhou", "sim");
-			Application.LoadLevel ("second_map");
+			texto.text = "Parabens, voce ganhou esta batalha!!!";
+			painelResultado.enabled = true;
+
 
 		}
 	}
@@ -197,6 +206,11 @@ public class GerenciadorBatalha : MonoBehaviour {
 			//Invoke("VezDeQuem", 10f);
 
 		}
+	}
+
+	public void sairBatalha(){
+		PlayerPrefs.SetString("Ganhou", "sim");
+		Application.LoadLevel ("second_map");
 	}
 
 }

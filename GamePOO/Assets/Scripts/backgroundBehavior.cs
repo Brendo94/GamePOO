@@ -59,7 +59,11 @@ public class backgroundBehavior : MonoBehaviour {
 	}
 
 	private void atualizarHealth(int decrescimo){
-		estadoVida -= decrescimo;
+		if (estadoVida > decrescimo) {
+			estadoVida -= decrescimo;
+		} else {
+			estadoVida = 0;
+		}
 	}
 
 	private void atualizarTextoHealth(){
