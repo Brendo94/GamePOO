@@ -67,18 +67,18 @@ public class ProcessadorCmds2 {
             {
                 if (entry.Key.Equals(objeto))
                 {                   
-                    if (!contemMetodo((string) entry.Value, metodo + "();"))
+                    if (contemMetodo((string) entry.Value, metodo + "();"))
                     {
-                        resultado[0] = "ERRO_METODO_NOT_FOUND";
-                        return resultado;
+                        resultado[0] = "CHAMAR_METODO";
+                        resultado[1] = nomeCls;
+                        resultado[2] = objeto;
+                        resultado[3] = metodo;
+                        return resultado;                        
                     }
 					nomeCls = (string) entry.Value;
                 }
             }
-            resultado[0] = "CHAMAR_METODO";
-            resultado[1] = nomeCls;
-			resultado[2] = objeto;
-			resultado[3] = metodo;
+            resultado[0] = "ERRO_METODO_NOT_FOUND";
             return resultado;
         }
         resultado[0] = "SINTAXE_INCORRETA";
