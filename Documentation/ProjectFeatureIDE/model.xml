@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="1">
+		<struct>
+			<and abstract="true" mandatory="true" name="POOGame">
+				<and mandatory="true" name="Scene">
+					<alt name="Phase">
+						<feature mandatory="true" name="Forest"/>
+						<feature mandatory="true" name="TropicalForest"/>
+					</alt>
+					<feature mandatory="true" name="Battle"/>
+					<feature mandatory="true" name="Tutorial"/>
+				</and>
+				<feature name="SavePoint"/>
+				<or mandatory="true" name="Character">
+					<feature mandatory="true" name="Humans"/>
+					<feature mandatory="true" name="Creatures"/>
+					<feature mandatory="true" name="Animals"/>
+				</or>
+				<feature mandatory="true" name="Player"/>
+				<or name="Audio">
+					<feature mandatory="true" name="Music"/>
+					<feature mandatory="true" name="Efect"/>
+				</or>
+				<feature name="Help"/>
+				<or mandatory="true" name="Action">
+					<feature mandatory="true" name="Idle"/>
+					<feature mandatory="true" name="ViewDescription"/>
+					<feature mandatory="true" name="ActionPlayer"/>
+				</or>
+				<feature mandatory="true" name="Bag"/>
+				<and mandatory="true" name="Acessory">
+					<feature mandatory="true" name="ManaPoint"/>
+					<feature mandatory="true" name="HealthPoint"/>
+				</and>
+				<feature mandatory="true" name="Scroll"/>
+			</and>
+		</struct>
+		<constraints>
+			<rule>
+				<imp>
+					<var>Help</var>
+					<var>ViewDescription</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>Forest</var>
+					<not>
+						<var>Animals</var>
+					</not>
+				</imp>
+			</rule>
+		</constraints>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>

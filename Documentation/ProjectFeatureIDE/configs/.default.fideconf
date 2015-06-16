@@ -1,0 +1,28 @@
+# Lists all features from the model with manual (first digit) and automatic (second digit) selection
+# 0 = deselected, 1 = selected, 2 = undefined
+21POOGame
+11Scene
+12Phase
+22Forest
+22TropicalForest
+11Battle
+11Tutorial
+22SavePoint
+11Character
+22Humans
+22Creatures
+22Animals
+11Player
+22Audio
+22Music
+22Efect
+22Help
+11Action
+22Idle
+22ViewDescription
+22ActionPlayer
+11Bag
+11Acessory
+11ManaPoint
+11HealthPoint
+11Scroll
