@@ -28,5 +28,5 @@ function faseUmTelaDois(){
 	Application.LoadLevel("passarFaseTela3");
 }
 function faseUmTelaTres(){
-	Application.LoadLevel("second_map");
+	Application.LoadLevel(6);
 }

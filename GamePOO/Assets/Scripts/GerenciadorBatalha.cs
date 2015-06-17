@@ -15,8 +15,8 @@ public class GerenciadorBatalha : MonoBehaviour {
 	private bool defender{ get; set;}
 	private int contadorDefesa{ get ; set ;}
 	public Animator anime;
-	public UnityEngine.UI.Text texto;
-	public Canvas painelResultado;
+	//public UnityEngine.UI.Text texto;
+	//public Canvas painelResultado;
 
 	void Start () {
 		block = false;
@@ -29,8 +29,8 @@ public class GerenciadorBatalha : MonoBehaviour {
 		Vez_mago = true;
 		defender = false;
 		contadorDefesa = 0;
-		painelResultado.enabled = false;
-		texto.text = "";
+		//painelResultado.enabled = false;
+		//texto.text = "";
 
 	}
 
@@ -105,8 +105,10 @@ public class GerenciadorBatalha : MonoBehaviour {
 		} else {
 			//batalha acaba aqui, perdeu
 			GameObject.Find ("Background").SendMessageUpwards ("atualizarBarra", valor);
-			texto.text = "Voce perdeu esta batalha...";
-			painelResultado.enabled = true;
+			PlayerPrefs.SetString("Ganhou", "nao");
+			Application.LoadLevel ("second_map");
+			//texto.text = "Voce perdeu esta batalha...";
+			//painelResultado.enabled = true;
 
 		}
 		if (contadorDefesa > 0) {
@@ -145,9 +147,10 @@ public class GerenciadorBatalha : MonoBehaviour {
 
 		} else {
 			//ganhou
-			texto.text = "Parabens, voce ganhou esta batalha!!!";
-			painelResultado.enabled = true;
-
+			//texto.text = "Parabens, voce ganhou esta batalha!!!";
+			//painelResultado.enabled = true;
+			PlayerPrefs.SetString("Ganhou", "sim");
+			Application.LoadLevel ("second_map");
 
 		}
 	}
