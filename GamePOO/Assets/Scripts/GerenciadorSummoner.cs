@@ -6,9 +6,10 @@ public class GerenciadorSummoner : MonoBehaviour {
 	public  GameObject[] monstros;
 	private bool[] _estaVazio;
 	private Transform[] _filhos;
+    //public Animator anime;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		_estaVazio = new bool[4];
 		//Invoke ("Instanciar", 1f);
 		//Invoke ("Instanciar", 1f);
@@ -18,11 +19,6 @@ public class GerenciadorSummoner : MonoBehaviour {
 		_estaVazio [2] = true;
 		_filhos = GetComponentsInChildren<Transform> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void callAnimation(string[] parametros){
 		
@@ -31,7 +27,8 @@ public class GerenciadorSummoner : MonoBehaviour {
 			_monstro = monstros[0].gameObject;
 
 			_monstro.GetComponent<Animator>().Play("attack");
-		}
+            
+        }
 	}
 	public void Instanciar(string nomeMonstro) {
 

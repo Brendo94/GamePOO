@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GerenciadorBatalha : MonoBehaviour {
 	private  GameObject _monstro;
@@ -41,8 +42,10 @@ public class GerenciadorBatalha : MonoBehaviour {
 			block = false;
 			Mago_mana += 15;
 			GameObject.Find ("Background").SendMessageUpwards ("aumentarMana", 15);
+            anime.Play("attack");
 
-		}else {
+        }
+        else {
 			vez.enabled = false;
 			block = true;
 			anime.SetBool ("atacando", true);
@@ -80,13 +83,15 @@ public class GerenciadorBatalha : MonoBehaviour {
 			_monstro = GameObject.Instantiate (monstros [5]) as GameObject;
 			_monstro.transform.position = gameObject.transform.position;
 			_monstro.transform.rotation = gameObject.transform.rotation;
+            _monstro.transform.Rotate(new Vector3(0,180,0));
 			anime = _monstro.GetComponent<Animator>();
 		}
 		else if (nomeMonstro.Equals ("Allosaurus_03")) {
 			_monstro = GameObject.Instantiate (monstros [6]) as GameObject;
 			_monstro.transform.position = gameObject.transform.position;
 			_monstro.transform.rotation = gameObject.transform.rotation;
-			anime = _monstro.GetComponent<Animator>();
+            _monstro.transform.Rotate(new Vector3(0, 180, 0));
+            anime = _monstro.GetComponent<Animator>();
 		}
 	}
 	public void MonstroAtacar(){
@@ -106,7 +111,7 @@ public class GerenciadorBatalha : MonoBehaviour {
 			//batalha acaba aqui, perdeu
 			GameObject.Find ("Background").SendMessageUpwards ("atualizarBarra", valor);
 			PlayerPrefs.SetString("Ganhou", "nao");
-			Application.LoadLevel ("second_map");
+            SceneManager.LoadScene("second_map");
 			//texto.text = "Voce perdeu esta batalha...";
 			//painelResultado.enabled = true;
 
@@ -146,13 +151,23 @@ public class GerenciadorBatalha : MonoBehaviour {
 			GameObject.Find ("Background").SendMessageUpwards ("diminuirMana", 15);
 
 		} else {
-			//ganhou
-			//texto.text = "Parabens, voce ganhou esta batalha!!!";
-			//painelResultado.enabled = true;
-			PlayerPrefs.SetString("Ganhou", "sim");
-			Application.LoadLevel ("second_map");
+            //ganhou
+            //texto.text = "Parabens, voce ganhou esta batalha!!!";
+            //painelResultado.enabled = true;
 
-		}
+            if (PlayerPrefs.GetString("nomeMonstro").Equals("PaiDoMonstro"))
+            {
+                PlayerPrefs.DeleteAll();
+                SceneManager.LoadScene("gameOver");
+            }
+            else {
+                Destroy(_monstro.gameObject);
+                PlayerPrefs.SetString("Ganhou", "sim");
+                SceneManager.LoadScene("second_map");
+            }
+            
+            
+        }
 	}
 
 
@@ -213,7 +228,7 @@ public class GerenciadorBatalha : MonoBehaviour {
 
 	public void sairBatalha(){
 		PlayerPrefs.SetString("Ganhou", "sim");
-		Application.LoadLevel ("second_map");
+        SceneManager.LoadScene("second_map");
 	}
 
 }

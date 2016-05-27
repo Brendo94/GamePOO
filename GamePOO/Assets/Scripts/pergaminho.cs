@@ -22,34 +22,28 @@ public class Pergaminho : MonoBehaviour {
 		nome = "";
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	
-	
 	void OnTriggerEnter(Collider other) {
 		if (other.CompareTag ("Player")) {
 			painel.enabled = true;
 			nome = this.gameObject.name;
 			if (this.gameObject.name.Equals ("classe01")) {
-				conversa.text = "public class Aranha { \n   private float poder;\n private float custo;\npublic Aranha() {\n poder = 10;\n custo = 15;\n }\n " +
-					"public float atacar(){\n return poder;\n }\n  public void defender(float dano){ \n        custo = custo - dano; \n    } \n}";
+				conversa.text = "public class Aranha { \n   private float poder;\n private float defesa;\npublic Aranha() {\n poder = 10;\n defesa = 15;\n }\n " +
+					"public float atacar(){\n return poder;\n }\n  public float defender(float dano){ \n        return dano - defesa; \n    } \n}";
 			} else if (this.gameObject.name.Equals ("classe02")) {
-				conversa.text = "Class Aranha { \n   private float poder;\n private float custo;\npublic Aranha() {\n poder = 10;\n custo = 15;\n }\n " +
-					"public float atacar(){\n return poder;\n }\n  public void defender(float dano){ \n        custo = custo - dano; \n    } \n}";
+				conversa.text = "public class Aranha { \n   private float poder;\n private float defesa;\npublic Aranha() {\n poder = 10;\n defesa = 15\n }\n " +
+					"public float atacar(){\n return poder;\n }\n  public float defender(float dano){ \n        return dano - defesa; \n    } \n}";
 				
 			} else if (this.gameObject.name.Equals ("classe03")) {
-				conversa.text = "public class Aranha { \n   private float poder;\n private float custo;\npublic Aranha() {\n poder = 10;\n custo = 15;\n }\n " +
-					"public float atacar(){\n return poder;\n }\n  public void defender(float dano){ \n        custo = custo - dano; \n  return custo;  \n } \n}";
+				conversa.text = "public class Aranha { \n   private float poder;\n private float defesa;\npublic Aranha() {\n poder = 10;\n defesa = 15;\n }\n " +
+                    "public float atacar(){\n poder = poder + 1;\n }\n  public float defender(float dano){ \n        return dano - defesa; \n  return defesa;  \n } \n}";
 				
 			} else if (this.gameObject.name.Equals ("classe04")) {
-				conversa.text = "public class Aranha { \n   private float poder;\n private float custo;\npublic Aranha() {\n poder = 10;\n custo = 15;\n }\n " +
-					"public float atacar(){\n return true;\n }\n  public void defender(float dano){ \n        custo = custo - dano; \n  return true;  \n } \n}";
+				conversa.text = "public class Aranha { \n   private float poder;\n private float defesa;\npublic Aranha() {\n poder = 10;\n defesa = 15;\n }\n " +
+					"public float atacar(){\n return true;\n }\n  public void defender(float dano){ \n        return dano - defesa; \n  return true;  \n } \n}";
 				
 			} else if (this.gameObject.name.Equals ("classe05")) {
-				conversa.text = "public class Aranha { \n   private float poder;\n private float custo;\npublic Aranha() {\n poder = 10;\n custo = 15;\n }\n " +
-					"public float atacar(){\n return poder;\n }\n  public void defender(float dano){ \n        custo = custo - dano; \n  return 0;  \n } \n}";
+				conversa.text = "public class Aranha { \n   private float poder;\n private float defesa;\npublic Aranha() {\n poder = 10;\n defesa = 15;\n }\n " +
+                    "public float atacar(){\n return “ataque”;\n }\n  public float defender(float dano){ \n        return dano - defesa; \n  return 0;  \n } \n}";
 				
 			}
 			
@@ -58,16 +52,13 @@ public class Pergaminho : MonoBehaviour {
 		
 		
 	}
-	void OnTriggerStay(Collider c){
+    void OnTriggerStay(Collider c){
 		
 		if (!PrimeiroInventario.temScroll && c.gameObject.CompareTag ("Player")  && destruir) {
 			destruir = false;
 			painel.enabled = false;
 			PrimeiroInventario.temScroll = true;
-			Destroy (gameObject);
-			
-		} else {
-			//Debug.Log("Estou aqui");
+			Destroy (gameObject);	
 		}
 	}
 	
@@ -78,18 +69,14 @@ public class Pergaminho : MonoBehaviour {
 			destruir = true;
 			Debug.Log(nome);
 			painel.enabled = false;
-		} else {
-			
-		}
-		
+		}	
 	}
-	
-	void OnTriggerExit(Collider other) {
+
+    void OnTriggerExit(Collider other) {
 		if (other.CompareTag ("Player")) {
 			painel.enabled = false;
-			conversa.text = "";
-			
+			conversa.text = "";	
 		}
-		
+
 	}
 }

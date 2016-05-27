@@ -10,8 +10,8 @@ public class Item : MonoBehaviour {
 	void Start () {
 		conversa.text = "";
 		painel.enabled = false;
-		_textoConversa = new string[] {"public class Aranha { \n   private float poder;\n private float custo;\npublic Aranha() {\n poder = 10;\n custo = 15;\n }\n " +
-					"public float atacar(){\n return poder;\n }\n  public void defender(float dano){ \n        custo = custo - dano; \n    } \n}" , "Ola Mundo ()", "Oh Hell yes"};
+		_textoConversa = new string[] {"public class Aranha { \n   private float poder;\n private float defesa;\npublic Aranha() {\n poder = 10;\n defesa = 15;\n }\n " +
+                    "public float atacar(){\n return poder;\n }\n  public float defender(float dano){ \n        return dano - defesa; \n    } \n}" , "Ola Mundo ()", "Oh Hell yes"};
 		
 	}
 
